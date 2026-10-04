@@ -1,0 +1,35 @@
+weeek-mcp bundles work from the following projects.
+
+================================================================================
+adalekin/weeek-mcp  (https://github.com/adalekin/weeek-mcp)
+
+The ProseMirror-to-Markdown renderer in src/weeek_mcp/session/prosemirror.py is
+derived from the read half of that project's weeek_mcp/kb/prosemirror.py. Its
+mapping of Weeek's node vocabulary (flat `list` siblings carrying a `kind`
+attribute, `line-break` for soft breaks, `horizontal-line`, and the
+table/table_body/table_row/table_cell nesting) was established there by network
+capture and is reused here. Image collection and the pluggable image renderer
+were added for this project.
+
+Licensed under the MIT License:
+
+    Copyright (c) adalekin
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+================================================================================
