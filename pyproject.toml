@@ -1,0 +1,56 @@
+[project]
+name = "weeek-mcp"
+version = "0.1.0"
+description = "Read a Weeek task (description, comments, screenshots) from its URL"
+readme = "README.md"
+requires-python = ">=3.14"
+license = { text = "MIT" }
+dependencies = [
+    "mcp==2.0.0",
+    "httpx2>=2.9.1",
+    # Holds the Weeek password in the OS keychain. Required because a Weeek
+    # session expires after ~2 hours and the server has to sign in again itself.
+    "keyring>=25.0",
+]
+
+[project.scripts]
+weeek-mcp = "weeek_mcp.__main__:main"
+
+[project.optional-dependencies]
+# Reads the session straight from a logged-in browser (login --from-browser).
+# Optional because only that one command needs it, never the server itself.
+browser = [
+    "browser-cookie3>=0.20",
+]
+# HTTP is mocked with httpx2's built-in MockTransport; respx and pytest-httpx
+# both pin httpx v1 and cannot see httpx2 traffic.
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8",
+    "browser-cookie3>=0.20",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/weeek_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "BLE", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests read better with literal payloads and long assertion messages. The
+# Cyrillic filenames in test_files.py are the point of those cases, not a typo.
+"tests/*" = ["E501", "RUF001"]
+"scripts/*" = ["E501"]
